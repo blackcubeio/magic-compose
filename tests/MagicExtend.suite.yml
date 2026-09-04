@@ -1,0 +1,4 @@
+actor: MagicExtendTester
+modules:
+    enabled:
+        - Asserts

@@ -1,0 +1,69 @@
+{
+    "name": "blackcube/magic-compose",
+    "description": "Simple solution for magic methods and method composition using attributes",
+    "keywords": [
+        "magic-methods",
+        "magic-properties",
+        "getter-setter",
+        "method-composition",
+        "php-attributes",
+        "traits",
+        "events",
+        "composition"
+    ],
+    "type": "library",
+    "license": "BSD-3-Clause",
+    "readme": "README.md",
+    "homepage": "https://github.com/blackcubeio/magic-compose",
+    "support": {
+        "issues": "https://github.com/blackcubeio/magic-compose/issues",
+        "source": "https://github.com/blackcubeio/magic-compose"
+    },
+    "authors": [
+        {
+            "name": "Philippe Gaultier",
+            "email": "philippe@blackcube.io"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": "^8.4"
+    },
+    "require-dev": {
+        "codeception/codeception": "^5.3",
+        "codeception/module-asserts": "^3.3",
+        "codeception/module-db": "^3.2",
+        "phpcompatibility/php-compatibility": "^9.3",
+        "vlucas/phpdotenv": "^5.7",
+        "yiisoft/active-record": "^1.1",
+        "yiisoft/cache": "^3.2",
+        "yiisoft/db": "^2.0",
+        "yiisoft/db-mysql": "^2.0",
+        "yiisoft/di": "^1.4",
+        "yiisoft/event-dispatcher": "^1.1",
+        "yiisoft/factory": "^1.3",
+        "yiisoft/test-support": "^3.2"
+    },
+    "suggest": {
+        "yiisoft/active-record": "Required for MagicComposeActiveRecordTrait"
+    },
+    "autoload": {
+        "psr-4": {
+            "Blackcube\\MagicCompose\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Blackcube\\MagicCompose\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-devel": "1.x-dev"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
