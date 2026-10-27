@@ -174,12 +174,8 @@ trait MagicComposeTrait
             }
         }
 
-        if ($isHandled === false) {
-            if (self::hasParentMagicMethod('__isset') === true) {
-                $isSet = parent::__isset($name);
-            } else {
-                trigger_error('Undefined property: ' . static::class . '::$' . $name, E_USER_WARNING);
-            }
+        if ($isHandled === false && self::hasParentMagicMethod('__isset') === true) {
+            $isSet = parent::__isset($name);
         }
 
         return $isSet;
@@ -204,7 +200,6 @@ trait MagicComposeTrait
                 parent::__unset($name);
             } else {
                 trigger_error('Undefined property: ' . static::class . '::$' . $name, E_USER_WARNING);
-                unset($this->$name);
             }
         }
     }
