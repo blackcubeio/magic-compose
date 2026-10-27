@@ -144,7 +144,6 @@ trait MagicComposeTrait
                 parent::__set($name, $value);
             } else {
                 trigger_error('Undefined property: ' . static::class . '::$' . $name, E_USER_WARNING);
-                $this->$name = $value;
             }
         }
     }
