@@ -237,6 +237,55 @@ class MagicComposeTraitCest
         $I->assertTrue($warningTriggered);
     }
 
+    public function testNoParentSetWritesNothing(MagicComposeTester $I): void
+    {
+        $model = new TestModel();
+        set_error_handler(function () {
+            return true;
+        });
+
+        $model->data = [
+            'injected' => 'value',
+        ];
+        $model->nonExistentProperty = 'value';
+
+        restore_error_handler();
+        $I->assertSame([], $model->getData());
+        $I->assertFalse(property_exists($model, 'nonExistentProperty'));
+    }
+
+    public function testNoParentIssetReturnsFalseSilently(MagicComposeTester $I): void
+    {
+        $model = new TestModel();
+        $warningTriggered = false;
+        set_error_handler(function () use (&$warningTriggered) {
+            $warningTriggered = true;
+            return true;
+        });
+
+        $isSet = isset($model->nonExistentProperty);
+
+        restore_error_handler();
+        $I->assertFalse($isSet);
+        $I->assertFalse($warningTriggered);
+    }
+
+    public function testNoParentUnsetRemovesNothing(MagicComposeTester $I): void
+    {
+        $model = new TestModel();
+        $model->highPriorityProp = 'kept';
+        set_error_handler(function () {
+            return true;
+        });
+
+        unset($model->data);
+
+        restore_error_handler();
+        $I->assertSame([
+            'highPriorityProp' => 'kept',
+        ], $model->getData());
+    }
+
     public function testNoParentCallTriggersError(MagicComposeTester $I): void
     {
         $model = new TestModel();
